@@ -1332,6 +1332,7 @@ radius = 5.0
 height = 26.0
 
 [node name="Game" type="Node2D"]
+position = Vector2(14, -1)
 
 [node name="andubadescu" type="CharacterBody2D" parent="."]
 
@@ -1339,7 +1340,7 @@ height = 26.0
 position = Vector2(-1, -16)
 sprite_frames = SubResource("SpriteFrames_ple6s")
 animation = &"idle-front"
-frame_progress = 0.671914
+frame_progress = 0.0665698
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="andubadescu"]
 position = Vector2(0, -14)
@@ -1351,7 +1352,7 @@ shape = SubResource("CapsuleShape2D_iotsf")
 position = Vector2(-23, -16)
 sprite_frames = SubResource("SpriteFrames_lc2xo")
 animation = &"idle-front"
-frame_progress = 0.264267
+frame_progress = 0.658923
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zombie"]
 position = Vector2(-23, -12)
