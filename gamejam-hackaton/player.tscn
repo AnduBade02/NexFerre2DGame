@@ -1,7 +1,7 @@
 [gd_scene load_steps=63 format=3 uid="uid://cr2p3hp70vd7p"]
 
 [ext_resource type="Texture2D" uid="uid://cfndmmtvb0jds" path="res://Assets/Apocalypse Character Pack/Player/Death.png" id="1_hqtel"]
-[ext_resource type="Texture2D" path="res://Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://c7vuq2ulyhk1h" path="res://Assets/Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4wcv3wgi5yyr" path="res://Assets/Apocalypse Character Pack/Player/Stab.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://drg3ib2s142xj" path="res://Assets/Apocalypse Character Pack/Player/Walk.png" id="4_1jxqw"]
 
@@ -229,7 +229,7 @@ region = Rect2(64, 64, 32, 32)
 atlas = ExtResource("4_1jxqw")
 region = Rect2(96, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -480,19 +480,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
-radius = 6.0
-height = 26.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
+radius = 15.0
+height = 80.0
 
-[node name="Node2D" type="Node2D"]
+[node name="andubadescu" type="CharacterBody2D"]
 
-[node name="andubadescu" type="CharacterBody2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15.5)
+scale = Vector2(3, 3.03125)
+sprite_frames = SubResource("SpriteFrames_hqtel")
+animation = &"idle_left"
+frame_progress = 0.653542
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="andubadescu"]
-position = Vector2(-1, -16)
-sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"idle-front"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="andubadescu"]
-position = Vector2(0, -14)
-shape = SubResource("CapsuleShape2D_b26j0")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, -7)
+shape = SubResource("CapsuleShape2D_sweqy")

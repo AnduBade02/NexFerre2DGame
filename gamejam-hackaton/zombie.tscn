@@ -437,7 +437,7 @@ region = Rect2(256, 64, 32, 32)
 atlas = ExtResource("4_x5rsa")
 region = Rect2(288, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mu2au"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_eseir"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -844,20 +844,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eseir"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nqyo"]
+radius = 4.33333
 height = 26.0
 
-[node name="Node2D" type="Node2D"]
+[node name="zombie" type="CharacterBody2D"]
 
-[node name="zombie" type="CharacterBody2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="zombie"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_mu2au")
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_eseir")
 animation = &"idle-front"
-frame_progress = 0.955851
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="zombie"]
-position = Vector2(0, -13)
-shape = SubResource("CapsuleShape2D_eseir")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_7nqyo")
