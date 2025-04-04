@@ -85,14 +85,6 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("2_sweqy")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
-atlas = ExtResource("2_sweqy")
-region = Rect2(0, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bnpwn"]
-atlas = ExtResource("2_sweqy")
-region = Rect2(32, 64, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_36jdj"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(0, 96, 32, 32)
@@ -100,6 +92,14 @@ region = Rect2(0, 96, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfvwf"]
 atlas = ExtResource("2_sweqy")
 region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b14r"]
+atlas = ExtResource("2_sweqy")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnpwn"]
+atlas = ExtResource("2_sweqy")
+region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dhpj7"]
 atlas = ExtResource("3_2hs0m")
@@ -323,6 +323,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_36jdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfvwf")
+}],
+"loop": true,
+"name": &"idle-left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5b14r")
 }, {
 "duration": 1.0,
@@ -330,17 +341,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle-right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_36jdj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfvwf")
-}],
-"loop": true,
-"name": &"idle_left",
 "speed": 5.0
 }, {
 "frames": [{
@@ -482,7 +482,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
 radius = 15.0
-height = 80.0
+height = 40.0
 
 [node name="andubadescu" type="CharacterBody2D"]
 
@@ -490,9 +490,9 @@ height = 80.0
 position = Vector2(0, -15.5)
 scale = Vector2(3, 3.03125)
 sprite_frames = SubResource("SpriteFrames_hqtel")
-animation = &"idle_left"
-frame_progress = 0.653542
+animation = &"idle-left"
+frame_progress = 0.0808839
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, -7)
+position = Vector2(4, 10)
 shape = SubResource("CapsuleShape2D_sweqy")
