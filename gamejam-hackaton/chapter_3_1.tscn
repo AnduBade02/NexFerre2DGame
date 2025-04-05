@@ -8620,3 +8620,9 @@ position = Vector2(-38, -76)
 
 [node name="player" parent="." instance=ExtResource("2_awaep")]
 position = Vector2(-54, -378)
+
+[node name="zombie2" parent="." instance=ExtResource("3_awaep")]
+position = Vector2(30, 54)
+
+[node name="zombie3" parent="." instance=ExtResource("3_awaep")]
+position = Vector2(36, 203)

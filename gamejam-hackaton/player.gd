@@ -24,8 +24,6 @@ func _physics_process(delta: float) -> void:
 	get_input()
 	move_and_slide()
 
-	update_attack_area_position()
-
 	if is_attacking:
 		return
 
@@ -61,7 +59,6 @@ func perform_attack() -> void:
 	anim_sprite.play("stab" + current_direction)
 
 	await get_tree().create_timer(0.1).timeout
-
 	for body in attack_area.get_overlapping_bodies():
 		if body and body.is_in_group("zombie") and body.has_method("die") and is_facing(body.global_position):
 			body.die()
@@ -70,6 +67,8 @@ func perform_attack() -> void:
 	can_attack = true
 
 func _on_animation_finished() -> void:
+	if is_dead:
+		return
 	if is_attacking:
 		is_attacking = false
 		anim_sprite.play("idle" + current_direction)
@@ -97,13 +96,4 @@ func update_direction_suffix(dir: Vector2) -> void:
 func is_facing(target_pos: Vector2) -> bool:
 	var to_target = (target_pos - global_position).normalized()
 	var dot = direction.dot(to_target)
-	return dot > 0.3
-
-func update_attack_area_position() -> void:
-	var offset := Vector2.ZERO
-	match current_direction:
-		"-front": offset = Vector2(3, -40)
-		"-back": offset = Vector2(3, 40)
-		"-left": offset = Vector2(-40, -12)
-		"-right": offset = Vector2(-12, 40)
-	attack_area.position = offset
+	return dot > 0.7

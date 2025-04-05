@@ -3,19 +3,26 @@ extends CharacterBody2D
 @export var speed_normal: float = 40.0
 @export var speed_chase: float = 90.0
 @export var change_direction_time: float = 2.0
+@export var slow_after_miss_time: float = 1.5
+@export var slow_speed: float = 20.0
 
 var player_in_range := false
 var player_node: CharacterBody2D = null
 var current_direction: String = "front"
 var is_dead: bool = false
+var can_attack_player: bool = true
+var is_slowed: bool = false
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var attack_area: Area2D = $AttackArea
+@onready var proximity_area: Area2D = $Proximity_Area
+@onready var vision_cone: Area2D = $VisionCone
 
 func _ready():
 	randomize()
 	set_random_direction()
-	$Proximity_Area.body_entered.connect(_on_player_entered)
-	$Proximity_Area.body_exited.connect(_on_player_exited)
+	proximity_area.body_entered.connect(_on_player_entered)
+	proximity_area.body_exited.connect(_on_player_exited)
 	_start_random_movement()
 
 func _physics_process(delta):
@@ -23,10 +30,20 @@ func _physics_process(delta):
 		return
 
 	if player_in_range and player_node:
-		velocity = (player_node.global_position - global_position).normalized() * speed_chase
+		var to_player = (player_node.global_position - global_position).normalized()
+		var chase_speed = slow_speed if is_slowed else speed_chase
+		velocity = to_player * chase_speed
+
+		update_direction_toward_player()
+		update_attack_area_position()
+
+		if can_attack_player:
+			if is_player_in_attack_area():
+				attack_player()
+			elif is_player_in_range():
+				missed_attack()
 	else:
-		# dacă nu are target, continuă să se miște în direcția aleatoare
-		pass
+		update_attack_area_position()
 
 	move_and_slide()
 	update_animation()
@@ -49,7 +66,6 @@ func update_animation():
 		return
 
 	var dir = velocity.normalized()
-
 	if abs(dir.x) > abs(dir.y):
 		current_direction = "left" if dir.x < 0 else "right"
 	else:
@@ -58,7 +74,7 @@ func update_animation():
 	anim_sprite.play("walk-" + current_direction)
 
 func _on_player_entered(body):
-	if body.name == "player":  # sau body.is_in_group("player")
+	if body.is_in_group("player"):
 		player_node = body
 		player_in_range = true
 
@@ -67,12 +83,81 @@ func _on_player_exited(body):
 		player_in_range = false
 		player_node = null
 
+func is_player_in_attack_area() -> bool:
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("player") and is_facing_player():
+			return true
+	return false
+
+func is_player_in_range() -> bool:
+	for body in attack_area.get_overlapping_bodies():
+		if body.is_in_group("player"):
+			return true
+	return false
+
+func is_facing_player() -> bool:
+	var to_player = (player_node.global_position - global_position).normalized()
+	var facing_dir = velocity.normalized()
+	if facing_dir == Vector2.ZERO:
+		facing_dir = to_player
+	var dot = facing_dir.dot(to_player)
+	return dot > 0.7
+
+func update_direction_toward_player():
+	var to_player = (player_node.global_position - global_position).normalized()
+	if abs(to_player.x) > abs(to_player.y):
+		current_direction = "right" if to_player.x > 0 else "left"
+	else:
+		current_direction = "front" if to_player.y > 0 else "back"
+
+func update_attack_area_position():
+	var offset := Vector2.ZERO
+	match current_direction:
+		"front": offset = Vector2(-55, 0)
+		"back": offset = Vector2(-55, -30)
+		"left": offset = Vector2(-90, 0)
+		"right": offset = Vector2(-20, 0)
+	attack_area.position = offset
+	
+
+func attack_player():
+	can_attack_player = false
+	velocity = Vector2.ZERO
+	anim_sprite.play("attack-" + current_direction)
+
+	if player_node and player_node.has_method("kill"):
+		player_node.kill()
+
+	await anim_sprite.animation_finished
+	if player_node and not player_node.is_dead:
+		anim_sprite.play("idle-" + current_direction)
+
+	await get_tree().create_timer(1.0).timeout
+	can_attack_player = true
+
+func missed_attack():
+	can_attack_player = false
+	is_slowed = true
+	velocity = Vector2.ZERO
+	anim_sprite.play("attack-" + current_direction)
+
+	await anim_sprite.animation_finished
+	anim_sprite.play("idle-" + current_direction)
+
+	await get_tree().create_timer(slow_after_miss_time).timeout
+	is_slowed = false
+	can_attack_player = true
+
 func die():
-	if is_dead: return
+	if is_dead:
+		return
 	is_dead = true
+	velocity = Vector2.ZERO
 	anim_sprite.play("death-" + current_direction)
 	set_physics_process(false)
-	$Proximity_Area.monitoring = false
-	velocity = Vector2.ZERO
+	proximity_area.monitoring = false
+	attack_area.monitoring = false
+	vision_cone.monitoring = false
 	await anim_sprite.animation_finished
+	await get_tree().create_timer(3.0).timeout
 	queue_free()

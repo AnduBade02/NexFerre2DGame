@@ -8026,4 +8026,4 @@ tile_set = SubResource("TileSet_qve2g")
 [node name="andubadescu" parent="." instance=ExtResource("4_345w4")]
 z_index = 100
 z_as_relative = false
-position = Vector2(-7, -25)
+position = Vector2(1407, 895)

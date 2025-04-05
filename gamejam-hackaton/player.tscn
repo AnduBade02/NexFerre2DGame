@@ -245,7 +245,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_mfdv2")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-back",
 "speed": 3.0
 }, {
@@ -262,7 +262,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7sc4i")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-front",
 "speed": 3.0
 }, {
@@ -279,7 +279,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_boyg6")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-left",
 "speed": 3.0
 }, {
@@ -296,7 +296,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qhcbd")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-right",
 "speed": 5.0
 }, {
@@ -485,16 +485,16 @@ animations = [{
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
-radius = 21.587
+radius = 109.814
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -12)
 scale = Vector2(3, 3.03125)
 sprite_frames = SubResource("SpriteFrames_hqtel")
-animation = &"stab-right"
+animation = &"death-right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -505,9 +505,10 @@ shape = SubResource("CapsuleShape2D_sweqy")
 position = Vector2(-1, 2)
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(89, 10)
+scale = Vector2(1.04798, 0.95904)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-65, -11)
+position = Vector2(-83.0169, -18.7688)
 shape = SubResource("CircleShape2D_sweqy")

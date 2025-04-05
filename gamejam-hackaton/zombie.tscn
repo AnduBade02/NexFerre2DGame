@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bedlq7dpyhywp"]
+[gd_scene load_steps=118 format=3 uid="uid://bedlq7dpyhywp"]
 
 [ext_resource type="Script" uid="uid://dsuqfi1g6xyc1" path="res://movement_tracking.gd" id="1_7nqyo"]
 [ext_resource type="Texture2D" uid="uid://bjmmlrkmy46rg" path="res://Assets/Apocalypse Character Pack/Zombie/Attack.png" id="1_eseir"]
@@ -456,7 +456,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pub2r")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack-back",
 "speed": 5.0
 }, {
@@ -476,7 +476,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdvb4")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack-front",
 "speed": 5.0
 }, {
@@ -496,7 +496,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2jp71")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack-left",
 "speed": 5.0
 }, {
@@ -516,7 +516,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ayqsr")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack-right",
 "speed": 5.0
 }, {
@@ -542,7 +542,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_s5wjl")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-back",
 "speed": 5.0
 }, {
@@ -568,7 +568,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hcsjy")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-front",
 "speed": 5.0
 }, {
@@ -594,7 +594,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jsthx")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-left",
 "speed": 5.0
 }, {
@@ -620,7 +620,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6bb4v")
 }],
-"loop": true,
+"loop": false,
 "name": &"death-right",
 "speed": 5.0
 }, {
@@ -850,7 +850,10 @@ radius = 6.66667
 height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nqyo"]
-radius = 87.0
+radius = 133.135
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lnshm"]
+radius = 20.0
 
 [node name="zombie" type="CharacterBody2D" groups=["zombie"]]
 collision_layer = 2
@@ -860,7 +863,7 @@ script = ExtResource("1_7nqyo")
 position = Vector2(0, -16)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_eseir")
-animation = &"idle-front"
+animation = &"attack-right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 5)
@@ -872,3 +875,9 @@ shape = SubResource("CapsuleShape2D_7nqyo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity_Area"]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_7nqyo")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(54, -20)
+shape = SubResource("CircleShape2D_lnshm")
