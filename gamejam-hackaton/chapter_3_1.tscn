@@ -8616,13 +8616,13 @@ polygon = PackedVector2Array(-172, -445, -153, -456, -104, -455, -78, -452, -61,
 polygon = PackedVector2Array(114, 275, 382, 274, 384, 575, 115, 571)
 
 [node name="zombie" parent="." instance=ExtResource("3_awaep")]
-position = Vector2(-38, -76)
+position = Vector2(202, 726)
 
 [node name="player" parent="." instance=ExtResource("2_awaep")]
-position = Vector2(-54, -378)
+position = Vector2(1120, 697)
 
 [node name="zombie2" parent="." instance=ExtResource("3_awaep")]
-position = Vector2(30, 54)
+position = Vector2(471, 132)
 
 [node name="zombie3" parent="." instance=ExtResource("3_awaep")]
-position = Vector2(36, 203)
+position = Vector2(-9, 434)

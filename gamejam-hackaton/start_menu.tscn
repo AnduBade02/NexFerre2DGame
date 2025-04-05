@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://b73gd11a5e7c"]
+
+[ext_resource type="Texture2D" uid="uid://cyuyobdcav0kt" path="res://Assets/background-assets/background.png" id="1_jwbto"]
+[ext_resource type="Script" uid="uid://bvjfk3icnnjdv" path="res://Scripts/start_menu.gd" id="1_vpdu5"]
+[ext_resource type="FontFile" uid="uid://c8p3km8sqnn1t" path="res://Assets/background-assets/apocalypse fax.ttf" id="2_ia0g5"]
+[ext_resource type="PackedScene" uid="uid://dhsjotvytms3h" path="res://Chapter0.tscn" id="2_v2mkm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2mkm"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctwoq"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppfnh"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vpdu5")
+first_level = ExtResource("2_v2mkm")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -202.0
+offset_top = -251.0
+offset_right = 182.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jwbto")
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -233.0
+offset_right = 233.0
+offset_bottom = 275.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 100
+text = "NEX FERRE"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_v2mkm")
+text = "Start Game
+"
+
+[node name="CreditsButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ctwoq")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ppfnh")
+text = "Quit Game"
+
+[node name="MenuContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -296.0
+offset_right = 494.0
+grow_vertical = 0
+
+[node name="LeftTextLabel" type="Label" parent="MenuContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46, 0.46, 0.46, 1)
+theme_override_colors/font_shadow_color = Color(0.658824, 0.658824, 0.658824, 1)
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 80
+text = "Do you 
+remember 
+your past?"
+horizontal_alignment = 1
+
+[node name="MenuContainer3" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -494.0
+offset_top = -296.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RightTextLabel" type="Label" parent="MenuContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.458824, 0.458824, 0.458824, 1)
+theme_override_colors/font_shadow_color = Color(0.66, 0.66, 0.66, 1)
+theme_override_fonts/font = ExtResource("2_ia0g5")
+theme_override_font_sizes/font_size = 80
+text = "Does it
+even
+matter?"
+horizontal_alignment = 1

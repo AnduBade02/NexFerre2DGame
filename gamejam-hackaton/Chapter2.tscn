@@ -45104,9 +45104,5 @@ shape = SubResource("CircleShape2D_h18wk")
 position = Vector2(779, 139)
 shape = SubResource("CircleShape2D_xf1a0")
 
-[node name="andubadescu" parent="." instance=ExtResource("12_hnxqp")]
-position = Vector2(401, -157)
-script = null
-
-[node name="Camera2D2" type="Camera2D" parent="andubadescu"]
-position = Vector2(-3, 13)
+[node name="player" parent="." instance=ExtResource("12_hnxqp")]
+position = Vector2(-615, -969)

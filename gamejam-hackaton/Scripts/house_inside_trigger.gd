@@ -1,6 +1,5 @@
 extends Area2D
 
-@export_node_path("Node2D") var player_path
 @export_node_path("Node2D") var interior_layer_path
 @export_node_path("Node2D") var walls_front_layer_path
 
@@ -17,7 +16,7 @@ func _on_body_entered(body: Node):
 	if body.name != "Player":
 		return
 
-	var player = get_node_or_null(player_path)
+	var player: Node = get_tree().get_root().find_child("Player", true, false)
 	if player == null:
 		print("❌ player_path invalid.")
 		return

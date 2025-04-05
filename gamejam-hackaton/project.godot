@@ -15,6 +15,10 @@ run/main_scene="uid://ddr4k441egnpw"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PauseMenu="*res://pause_menu.tscn"
+
 [input]
 
 ui_left={
