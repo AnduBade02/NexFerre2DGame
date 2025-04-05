@@ -1,10 +1,51 @@
 [gd_scene load_steps=64 format=3 uid="uid://cr2p3hp70vd7p"]
 
 [ext_resource type="Texture2D" uid="uid://cfndmmtvb0jds" path="res://Assets/Apocalypse Character Pack/Player/Death.png" id="1_hqtel"]
-[ext_resource type="Script" uid="uid://byy7u3kisgcus" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c7vuq2ulyhk1h" path="res://Assets/Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4wcv3wgi5yyr" path="res://Assets/Apocalypse Character Pack/Player/Stab.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://drg3ib2s142xj" path="res://Assets/Apocalypse Character Pack/Player/Walk.png" id="4_1jxqw"]
+
+[sub_resource type="GDScript" id="GDScript_hqtel"]
+script/source = "extends CharacterBody2D
+
+@export var speed := 150.0
+
+var direction := Vector2.ZERO
+var last_direction := \"front\"
+
+@onready var anim_sprite := $AnimatedSprite2D
+
+func _physics_process(delta):
+	direction = Vector2.ZERO
+
+	if Input.is_action_pressed(\"ui_right\"):
+		direction.x += 1
+	if Input.is_action_pressed(\"ui_left\"):
+		direction.x -= 1
+	if Input.is_action_pressed(\"ui_down\"):
+		direction.y += 1
+	if Input.is_action_pressed(\"ui_up\"):
+		direction.y -= 1
+
+	direction = direction.normalized()
+	velocity = direction * speed
+	move_and_slide()
+
+	_update_animation()
+
+func _update_animation():
+	if direction == Vector2.ZERO:
+		anim_sprite.play(\"idle-\" + last_direction)
+	else:
+		var dir_str = \"\"
+		if abs(direction.x) > abs(direction.y):
+			dir_str = \"right\" if direction.x > 0 else \"left\"
+		else:
+			dir_str = \"front\" if direction.y > 0 else \"back\"
+		
+		last_direction = dir_str
+		anim_sprite.play(\"walk-\" + dir_str)
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
 atlas = ExtResource("1_hqtel")
@@ -486,7 +527,7 @@ radius = 15.0
 height = 40.0
 
 [node name="andubadescu" type="CharacterBody2D"]
-script = ExtResource("1_sweqy")
+script = SubResource("GDScript_hqtel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15.5)
@@ -499,3 +540,5 @@ frame_progress = 0.0808839
 y_sort_enabled = true
 position = Vector2(4, 10)
 shape = SubResource("CapsuleShape2D_sweqy")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -44852,7 +44852,6 @@ tile_map_data = PackedByteArray("AAD9//n/AAAaAC4AAAD9//r/AAAaAC8AAAD9//v/AAAaADA
 tile_set = SubResource("TileSet_kteal")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Main Mansion/Exterior Front Walls"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main Mansion/Exterior Front Walls/StaticBody2D"]
 position = Vector2(-397.5, -128.5)
@@ -45107,6 +45106,7 @@ shape = SubResource("CircleShape2D_xf1a0")
 
 [node name="andubadescu" parent="." instance=ExtResource("12_hnxqp")]
 position = Vector2(401, -157)
+script = null
 
 [node name="Camera2D" type="Camera2D" parent="andubadescu"]
 position = Vector2(-3, 13)
