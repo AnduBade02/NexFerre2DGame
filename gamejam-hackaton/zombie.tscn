@@ -1,5 +1,6 @@
-[gd_scene load_steps=115 format=3 uid="uid://bedlq7dpyhywp"]
+[gd_scene load_steps=117 format=3 uid="uid://bedlq7dpyhywp"]
 
+[ext_resource type="Script" uid="uid://dsuqfi1g6xyc1" path="res://movement_tracking.gd" id="1_7nqyo"]
 [ext_resource type="Texture2D" uid="uid://bjmmlrkmy46rg" path="res://Assets/Apocalypse Character Pack/Zombie/Attack.png" id="1_eseir"]
 [ext_resource type="Texture2D" uid="uid://dnt102ujk14mk" path="res://Assets/Apocalypse Character Pack/Zombie/Death.png" id="2_7nqyo"]
 [ext_resource type="Texture2D" uid="uid://dxmvfk1avmj7i" path="res://Assets/Apocalypse Character Pack/Zombie/Idle.png" id="3_lnshm"]
@@ -845,10 +846,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nqyo"]
-radius = 4.33333
-height = 26.0
+radius = 2.33333
+height = 12.0
 
-[node name="zombie" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_7nqyo"]
+radius = 87.0
+
+[node name="zombie" type="CharacterBody2D" groups=["zombie"]]
+collision_layer = 2
+script = ExtResource("1_7nqyo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -857,6 +863,12 @@ sprite_frames = SubResource("SpriteFrames_eseir")
 animation = &"idle-front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
+position = Vector2(-1, 5)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_7nqyo")
+
+[node name="Proximity_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity_Area"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_7nqyo")

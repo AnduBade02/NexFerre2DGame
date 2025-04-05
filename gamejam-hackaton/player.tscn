@@ -1,51 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://cr2p3hp70vd7p"]
+[gd_scene load_steps=65 format=3 uid="uid://cr2p3hp70vd7p"]
 
 [ext_resource type="Texture2D" uid="uid://cfndmmtvb0jds" path="res://Assets/Apocalypse Character Pack/Player/Death.png" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://ca4uswte1exdk" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c7vuq2ulyhk1h" path="res://Assets/Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4wcv3wgi5yyr" path="res://Assets/Apocalypse Character Pack/Player/Stab.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://drg3ib2s142xj" path="res://Assets/Apocalypse Character Pack/Player/Walk.png" id="4_1jxqw"]
-
-[sub_resource type="GDScript" id="GDScript_hqtel"]
-script/source = "extends CharacterBody2D
-
-@export var speed := 150.0
-
-var direction := Vector2.ZERO
-var last_direction := \"front\"
-
-@onready var anim_sprite := $AnimatedSprite2D
-
-func _physics_process(delta):
-	direction = Vector2.ZERO
-
-	if Input.is_action_pressed(\"ui_right\"):
-		direction.x += 1
-	if Input.is_action_pressed(\"ui_left\"):
-		direction.x -= 1
-	if Input.is_action_pressed(\"ui_down\"):
-		direction.y += 1
-	if Input.is_action_pressed(\"ui_up\"):
-		direction.y -= 1
-
-	direction = direction.normalized()
-	velocity = direction * speed
-	move_and_slide()
-
-	_update_animation()
-
-func _update_animation():
-	if direction == Vector2.ZERO:
-		anim_sprite.play(\"idle-\" + last_direction)
-	else:
-		var dir_str = \"\"
-		if abs(direction.x) > abs(direction.y):
-			dir_str = \"right\" if direction.x > 0 else \"left\"
-		else:
-			dir_str = \"front\" if direction.y > 0 else \"back\"
-		
-		last_direction = dir_str
-		anim_sprite.play(\"walk-\" + dir_str)
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
 atlas = ExtResource("1_hqtel")
@@ -398,7 +357,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xex6t")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab-back",
 "speed": 5.0
 }, {
@@ -415,7 +374,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l1i01")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab-front",
 "speed": 5.0
 }, {
@@ -432,7 +391,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_edr7y")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab-left",
 "speed": 5.0
 }, {
@@ -449,7 +408,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lwlx3")
 }],
-"loop": true,
+"loop": false,
 "name": &"stab-right",
 "speed": 5.0
 }, {
@@ -523,22 +482,32 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
-radius = 15.0
-height = 40.0
+radius = 9.0
 
-[node name="andubadescu" type="CharacterBody2D"]
-script = SubResource("GDScript_hqtel")
+[sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
+radius = 21.587
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_sweqy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -15.5)
+position = Vector2(3, -12)
 scale = Vector2(3, 3.03125)
 sprite_frames = SubResource("SpriteFrames_hqtel")
-animation = &"idle-left"
-frame_progress = 0.0808839
+animation = &"stab-right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(4, 10)
+position = Vector2(1, 4)
 shape = SubResource("CapsuleShape2D_sweqy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, 2)
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(12, 0)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-65, -11)
+shape = SubResource("CircleShape2D_sweqy")
