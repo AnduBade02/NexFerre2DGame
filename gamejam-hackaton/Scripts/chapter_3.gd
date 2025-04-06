@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	if Global.pages_collected >= 3:
+	if Global.pages_collected >= 2:
 		play_good_ending()
 	else:
 		play_bad_ending()
@@ -54,7 +54,7 @@ func play_bad_ending():
 	finish_chapter()
 
 func finish_chapter():
-	if Global.pages_collected >= 3:
+	if Global.pages_collected >= 2:
 		GameOver1.show_death()
 	else:
 		GameOver2.show_death()

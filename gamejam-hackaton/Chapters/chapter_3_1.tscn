@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://b2x8iofcmkut5"]
+[gd_scene load_steps=17 format=4 uid="uid://b2x8iofcmkut5"]
 
 [ext_resource type="Texture2D" uid="uid://bjxlh16tp226b" path="res://Assets/Laboratory-Assets/tileset.png" id="1_dxf6x"]
 [ext_resource type="Script" uid="uid://bgg0obmwe1dy8" path="res://Scripts/chapter_3_1.gd" id="1_sangr"]
 [ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://Models/player.tscn" id="2_awaep"]
 [ext_resource type="PackedScene" uid="uid://bedlq7dpyhywp" path="res://Models/zombie.tscn" id="3_awaep"]
+[ext_resource type="PackedScene" uid="uid://c0sa3iiygpww7" path="res://TransitionScenes/LevelTransition.tscn" id="5_c120w"]
+[ext_resource type="PackedScene" uid="uid://ddr4k441egnpw" path="res://Chapters/Chapter3.tscn" id="6_k8vxt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbke8"]
 texture = ExtResource("1_dxf6x")
@@ -8632,3 +8634,7 @@ polygon = PackedVector2Array(-172, -445, -153, -456, -104, -455, -78, -452, -61,
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(114, 275, 382, 274, 384, 575, 115, 571)
+
+[node name="LevelTransition" parent="." instance=ExtResource("5_c120w")]
+position = Vector2(-31, -455)
+next_level_scene = ExtResource("6_k8vxt")

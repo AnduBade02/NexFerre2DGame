@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=4 uid="uid://dhsjotvytms3h"]
+[gd_scene load_steps=117 format=4 uid="uid://dhsjotvytms3h"]
 
 [ext_resource type="Texture2D" uid="uid://jhggom33js7i" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_floors.png" id="1_5x7r8"]
 [ext_resource type="Texture2D" uid="uid://cndyutbtrqtri" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_main_lev.png" id="1_sey1v"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://dxdkcnn77yte7" path="res://collectible.tscn" id="15_dotnp"]
 [ext_resource type="PackedScene" uid="uid://bxjua5kcb85pf" path="res://Models/daughter.tscn" id="17_1cofx"]
 [ext_resource type="PackedScene" uid="uid://6drhn75bbddr" path="res://Models/mother.tscn" id="18_tlkvk"]
+[ext_resource type="PackedScene" uid="uid://c0sa3iiygpww7" path="res://TransitionScenes/LevelTransition.tscn" id="20_l5x2x"]
+[ext_resource type="PackedScene" uid="uid://b4s5iudjqvsl4" path="res://Chapters/chapter_1.tscn" id="21_vkk83"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwy0g"]
 texture = ExtResource("1_sey1v")
@@ -112388,3 +112390,8 @@ polygon = PackedVector2Array(-1521, 394, 795, 452, 799, 366, 826, 345, 1129, 344
 position = Vector2(-3.00134, 0)
 scale = Vector2(1.00198, 1)
 polygon = PackedVector2Array(1274, -411, 1244, -398, 1231, -382, 1229, -364, 1255, -356, 1273, -344, 1288, -326, 1317, -322, 1336, -315, 1371, -316, 1399, -320, 1426, -329, 1446, -342, 1450, -365, 1445, -386, 1428, -395, 1408, -413, 1387, -422, 1348, -421, 1322, -421)
+
+[node name="LevelTransition" parent="." instance=ExtResource("20_l5x2x")]
+position = Vector2(1128, -143)
+scale = Vector2(1, 15)
+next_level_scene = ExtResource("21_vkk83")

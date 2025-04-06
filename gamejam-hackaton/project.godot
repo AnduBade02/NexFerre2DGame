@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam-Hackaton"
-run/main_scene="uid://ddr4k441egnpw"
+run/main_scene="uid://b73gd11a5e7c"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,13 @@ CutsceneBox="*res://cutscene_box.tscn"
 Global="*res://Scripts/global.gd"
 GameOver2="*res://game_over_2.tscn"
 GameOver1="*res://game_over_1.tscn"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 

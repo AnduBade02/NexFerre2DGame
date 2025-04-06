@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=4 uid="uid://bfyshx5aa1y7e"]
+[gd_scene load_steps=151 format=4 uid="uid://bfyshx5aa1y7e"]
 
 [ext_resource type="Texture2D" uid="uid://d1hp1wf24vabu" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings.png" id="1_2n7ac"]
 [ext_resource type="Script" uid="uid://vqvpedcybf6v" path="res://Scripts/chapter_2.gd" id="1_3ou8r"]
@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://bk5j0qrlxum13" path="res://Scripts/door_open.gd" id="15_ltei4"]
 [ext_resource type="PackedScene" uid="uid://dxdkcnn77yte7" path="res://collectible.tscn" id="17_rw7xx"]
 [ext_resource type="PackedScene" uid="uid://bedlq7dpyhywp" path="res://Models/zombie.tscn" id="19_3ou8r"]
+[ext_resource type="PackedScene" uid="uid://c0sa3iiygpww7" path="res://TransitionScenes/LevelTransition.tscn" id="22_xcg01"]
+[ext_resource type="PackedScene" uid="uid://cthvnnwh7xwc0" path="res://Chapters/Chapter2_1.tscn" id="23_nvi8t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xmarw"]
 texture = ExtResource("1_2n7ac")
@@ -45679,3 +45681,7 @@ debug_color = Color(0.999786, 0, 0.1012, 0.42)
 position = Vector2(495, 238.25)
 shape = SubResource("RectangleShape2D_iexql")
 debug_color = Color(1, 0.0125083, 0.0143337, 0.42)
+
+[node name="LevelTransition" parent="." instance=ExtResource("22_xcg01")]
+position = Vector2(607, -608)
+next_level_scene = ExtResource("23_nvi8t")
