@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	CutsceneBox.start_cutscene([
+		"* Press Space/Enter to skip lines *",
 		"Mariah: She's burning up again, Nex.",
 		"Nex: I know... I know.",
 		"Mariah: We can’t just watch her fade. We have to do something.",
