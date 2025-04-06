@@ -112214,7 +112214,7 @@ shape = SubResource("CircleShape2D_7me6a")
 position = Vector2(-58, -199)
 shape = SubResource("CircleShape2D_uj4r3")
 
-[node name="Player" parent="Main House" instance=ExtResource("10_lcnhq")]
+[node name="player" parent="Main House" instance=ExtResource("10_lcnhq")]
 position = Vector2(-275, -583)
 
 [node name="Roof" type="TileMapLayer" parent="Main House"]
@@ -112354,6 +112354,6 @@ polygon = PackedVector2Array(1274, -411, 1244, -398, 1231, -382, 1229, -364, 125
 
 [node name="NoteUI" parent="." instance=ExtResource("16_l2jml")]
 
-[node name="Area2D" parent="." instance=ExtResource("15_dotnp")]
+[node name="collectible" parent="." instance=ExtResource("15_dotnp")]
 position = Vector2(-448, -659)
 scale = Vector2(0.213918, 0.212263)

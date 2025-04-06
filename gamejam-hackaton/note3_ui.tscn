@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://q5m685hypx7t"]
+[gd_scene load_steps=6 format=3 uid="uid://87ir4racwi2k"]
 
-[ext_resource type="Script" uid="uid://cphn28fr6fn3y" path="res://Scripts/note_ui.gd" id="1_dm76p"]
-[ext_resource type="Texture2D" uid="uid://csbfeqjlms465" path="res://Assets/old_paper.jpg" id="2_8b3qq"]
-[ext_resource type="FontFile" uid="uid://c8p3km8sqnn1t" path="res://Assets/background-assets/apocalypse fax.ttf" id="3_ji6ou"]
+[ext_resource type="Script" uid="uid://cphn28fr6fn3y" path="res://Scripts/note_ui.gd" id="1_yp7yn"]
+[ext_resource type="Texture2D" uid="uid://csbfeqjlms465" path="res://Assets/old_paper.jpg" id="2_0k2av"]
+[ext_resource type="FontFile" uid="uid://c8p3km8sqnn1t" path="res://Assets/background-assets/apocalypse fax.ttf" id="3_1dd44"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ji6ou"]
-texture = ExtResource("2_8b3qq")
+texture = ExtResource("2_0k2av")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ttxay"]
 bg_color = Color(0, 0, 0, 0)
 
-[node name="NoteUI" type="CanvasLayer"]
-script = ExtResource("1_dm76p")
+[node name="Note3UI" type="CanvasLayer"]
+script = ExtResource("1_yp7yn")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -34,7 +34,7 @@ offset_top = -68.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.08, 0.08, 0.08, 1)
-theme_override_fonts/font = ExtResource("3_ji6ou")
+theme_override_fonts/font = ExtResource("3_1dd44")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_ttxay")
 text = "Put Away"
@@ -49,16 +49,10 @@ offset_right = 301.5
 offset_bottom = 113.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.03, 0.0273, 0.0273, 1)
-theme_override_fonts/font = ExtResource("3_ji6ou")
-theme_override_font_sizes/font_size = 50
-text = "August 12
-
-I saw the look in Elena’s eyes again.
-That quiet kind of disappointment, 
-the one they never say out loud.
-I swore this would be the last time I failed them.
-No more running. No more hiding.
- I owe them more than this.
-
-— N."
+theme_override_fonts/font = ExtResource("3_1dd44")
+theme_override_font_sizes/font_size = 100
+text = "
+Nex,
+I thought you were 
+better than this."
 horizontal_alignment = 1

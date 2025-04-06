@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bueqv35jgawcy"]
+
+[ext_resource type="Texture2D" uid="uid://c0i13ib5mw7m7" path="res://Assets/wessel-brattinga-scientist-sprite-sheet-removebg-preview.png" id="1_dkah4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3li26"]
+atlas = ExtResource("1_dkah4")
+region = Rect2(0, 0, 204, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3xpj"]
+atlas = ExtResource("1_dkah4")
+region = Rect2(204, 0, 204, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j610"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3li26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3xpj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+scale = Vector2(0.4, 0.4)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8j610")
+frame_progress = 0.606072
