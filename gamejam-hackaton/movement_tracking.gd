@@ -16,7 +16,7 @@ var is_slowed: bool = false
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var proximity_area: Area2D = $Proximity_Area
-@onready var vision_cone: Area2D = $VisionCone
+
 
 func _ready():
 	randomize()
@@ -35,15 +35,14 @@ func _physics_process(delta):
 		velocity = to_player * chase_speed
 
 		update_direction_toward_player()
-		update_attack_area_position()
+
 
 		if can_attack_player:
 			if is_player_in_attack_area():
 				attack_player()
 			elif is_player_in_range():
 				missed_attack()
-	else:
-		update_attack_area_position()
+	
 
 	move_and_slide()
 	update_animation()
@@ -110,14 +109,7 @@ func update_direction_toward_player():
 	else:
 		current_direction = "front" if to_player.y > 0 else "back"
 
-func update_attack_area_position():
-	var offset := Vector2.ZERO
-	match current_direction:
-		"front": offset = Vector2(-55, 0)
-		"back": offset = Vector2(-55, -30)
-		"left": offset = Vector2(-90, 0)
-		"right": offset = Vector2(-20, 0)
-	attack_area.position = offset
+
 	
 
 func attack_player():
@@ -157,7 +149,6 @@ func die():
 	set_physics_process(false)
 	proximity_area.monitoring = false
 	attack_area.monitoring = false
-	vision_cone.monitoring = false
 	await anim_sprite.animation_finished
 	await get_tree().create_timer(3.0).timeout
 	queue_free()

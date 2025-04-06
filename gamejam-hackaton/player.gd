@@ -60,8 +60,11 @@ func perform_attack() -> void:
 
 	await get_tree().create_timer(0.1).timeout
 	for body in attack_area.get_overlapping_bodies():
-		if body and body.is_in_group("zombie") and body.has_method("die") and is_facing(body.global_position):
+		print("Detectat:", body)
+		if body and body.is_in_group("zombie") and body.has_method("die"):
+			print("Omorâm:", body)
 			body.die()
+
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
@@ -80,6 +83,8 @@ func kill() -> void:
 	velocity = Vector2.ZERO
 	anim_sprite.play("death" + current_direction)
 	set_physics_process(false)
+	await get_tree().create_timer(3.0).timeout
+	DeathScreen.show_death()
 
 func play_walk_animation() -> void:
 	anim_sprite.play("walk" + current_direction)
@@ -92,8 +97,3 @@ func update_direction_suffix(dir: Vector2) -> void:
 		current_direction = "-right" if dir.x > 0 else "-left"
 	else:
 		current_direction = "-back" if dir.y < 0 else "-front"
-
-func is_facing(target_pos: Vector2) -> bool:
-	var to_target = (target_pos - global_position).normalized()
-	var dot = direction.dot(to_target)
-	return dot > 0.7

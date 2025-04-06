@@ -1,8 +1,10 @@
 
+
 extends Node2D
 
 # Factor de scală al zonei exterioare (ex: 1.5 = 50% mai mare)
 @export var outside_scale: float = 2.0
+
 
 @onready var ground := $TileMapGround
 @onready var obstacles := $TileMapObstacles
@@ -15,6 +17,10 @@ extends Node2D
 
 # Raza cercului în care nu vrem pereți sau apă (rămâne ca la tine)
 @export var restricted_radius: float = 20.0
+
+@export var zombie_scene: PackedScene
+@export var zombie_count: int = 100
+@export var zombie_min_spawn_distance: float = 20.0
 
 # Harta principală (zona normală)
 var map_data: Array = []
@@ -64,6 +70,7 @@ func _ready():
 	place_water_prefabs()
 	place_wall_prefabs()
 	create_level_boundaries()
+	spawn_zombies()
 
 # ----------------------------------------------------------------------------
 # GENEREAZĂ HARTA PRINCIPALĂ (map_data) - EXACT CA ÎN SCRIPTUL TĂU
@@ -266,3 +273,29 @@ func place_wall_prefabs():
 					inst.position = Vector2(x,y)*16
 					inst.z_index=1
 					add_child(inst)
+					
+func spawn_zombies():
+	var center = Vector2(big_width / 2, big_height / 2) * 16
+	var spawned = 0
+	var attempts = 0
+	var max_attempts = 500
+
+	while spawned < zombie_count and attempts < max_attempts:
+		attempts += 1
+
+		var x = randi() % big_width
+		var y = randi() % big_height
+
+		if big_map_data[x][y] != 0:
+			continue  # doar pe podea
+
+		var world_pos = Vector2(x, y) * 16
+
+		if world_pos.distance_to(center) < zombie_min_spawn_distance * 16:
+			continue  # prea aproape de spawn
+
+		var zombie = zombie_scene.instantiate()
+		zombie.position = world_pos
+		add_child(zombie)
+
+		spawned += 1

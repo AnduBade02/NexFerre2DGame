@@ -846,14 +846,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7nqyo"]
-radius = 6.66667
-height = 20.0
+radius = 3.33333
+height = 6.66667
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nqyo"]
 radius = 133.135
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lnshm"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnshm"]
+radius = 16.0
+height = 76.0
 
 [node name="zombie" type="CharacterBody2D" groups=["zombie"]]
 collision_layer = 2
@@ -866,18 +867,19 @@ sprite_frames = SubResource("SpriteFrames_eseir")
 animation = &"attack-right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5)
+position = Vector2(0, 17)
 scale = Vector2(3, 3)
 shape = SubResource("CapsuleShape2D_7nqyo")
 
 [node name="Proximity_Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity_Area"]
-position = Vector2(0, -1)
+position = Vector2(5, -12)
 shape = SubResource("CircleShape2D_7nqyo")
 
 [node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(2, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(54, -20)
-shape = SubResource("CircleShape2D_lnshm")
+position = Vector2(3, -17)
+shape = SubResource("CapsuleShape2D_lnshm")

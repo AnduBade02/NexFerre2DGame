@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://dhsjotvytms3h"]
+[gd_scene load_steps=112 format=4 uid="uid://dhsjotvytms3h"]
 
 [ext_resource type="Texture2D" uid="uid://jhggom33js7i" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_floors.png" id="1_5x7r8"]
 [ext_resource type="Texture2D" uid="uid://cndyutbtrqtri" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_main_lev.png" id="1_sey1v"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://player.tscn" id="10_lcnhq"]
 [ext_resource type="Script" uid="uid://pr0fipdvlnsr" path="res://Scripts/house_inside_trigger.gd" id="10_m24d3"]
 [ext_resource type="Script" uid="uid://bx5fg6w7mleg7" path="res://Scripts/house_exit_trigger.gd" id="11_61qkx"]
+[ext_resource type="PackedScene" uid="uid://dxdkcnn77yte7" path="res://collectible.tscn" id="15_dotnp"]
+[ext_resource type="PackedScene" uid="uid://q5m685hypx7t" path="res://note_ui.tscn" id="16_l2jml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rwy0g"]
 texture = ExtResource("1_sey1v")
@@ -112213,7 +112215,7 @@ position = Vector2(-58, -199)
 shape = SubResource("CircleShape2D_uj4r3")
 
 [node name="Player" parent="Main House" instance=ExtResource("10_lcnhq")]
-position = Vector2(70, 127)
+position = Vector2(-275, -583)
 
 [node name="Roof" type="TileMapLayer" parent="Main House"]
 z_as_relative = false
@@ -112349,3 +112351,9 @@ polygon = PackedVector2Array(-1517, 453, 795, 452, 799, 366, 826, 345, 1129, 344
 position = Vector2(-3.00134, 0)
 scale = Vector2(1.00198, 1)
 polygon = PackedVector2Array(1274, -411, 1244, -398, 1231, -382, 1229, -364, 1255, -356, 1273, -344, 1288, -326, 1317, -322, 1336, -315, 1371, -316, 1399, -320, 1426, -329, 1446, -342, 1450, -365, 1445, -386, 1428, -395, 1408, -413, 1387, -422, 1348, -421, 1322, -421)
+
+[node name="NoteUI" parent="." instance=ExtResource("16_l2jml")]
+
+[node name="Area2D" parent="." instance=ExtResource("15_dotnp")]
+position = Vector2(-448, -659)
+scale = Vector2(0.213918, 0.212263)

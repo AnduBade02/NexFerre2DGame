@@ -482,8 +482,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sweqy"]
-radius = 6.0
-height = 28.0
+radius = 10.9926
+height = 21.9851
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sweqy"]
 radius = 109.814
@@ -500,7 +500,7 @@ animation = &"idle-left"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(5, 28)
-rotation = 1.5708
+rotation = 3.11925
 shape = SubResource("CapsuleShape2D_sweqy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -512,5 +512,5 @@ scale = Vector2(1.04798, 0.95904)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-80.1542, -17.7261)
+position = Vector2(-79.2, -11.4698)
 shape = SubResource("CircleShape2D_sweqy")
