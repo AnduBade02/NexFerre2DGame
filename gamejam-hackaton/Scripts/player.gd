@@ -4,9 +4,12 @@ extends CharacterBody2D
 @export var sprint_multiplier: float = 2.0
 @export var attack_cooldown: float = 0.4
 @onready var collision_shape := $CollisionShape2D  # adaptează calea dacă e diferit
-
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
+@onready var footstep_player: AudioStreamPlayer2D = $FootstepPlayer
+@onready var stab_miss_player: AudioStreamPlayer2D = $StabMissPlayer
+@onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
+
 
 var direction: Vector2 = Vector2.ZERO
 var current_direction: String = "-front"
@@ -34,8 +37,12 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
 		update_direction_suffix(direction)
 		play_walk_animation()
+		if not footstep_player.playing:
+			footstep_player.play()
 	else:
 		play_idle_animation()
+		if footstep_player.playing:
+			footstep_player.stop()
 
 func get_input() -> void:
 	if is_attacking:
@@ -60,15 +67,22 @@ func perform_attack() -> void:
 	is_attacking = true
 	can_attack = false
 	velocity = Vector2.ZERO
+
+	if footstep_player.playing:
+		footstep_player.stop()
+
 	anim_sprite.play("stab" + current_direction)
 
 	await get_tree().create_timer(0.1).timeout
+
+	var hit_something := false
 	for body in attack_area.get_overlapping_bodies():
-		print("Detectat:", body)
 		if body and body.is_in_group("zombie") and body.has_method("die"):
-			print("Omorâm:", body)
+			hit_something = true
 			body.die()
 
+	if not hit_something:
+		stab_miss_player.play()
 
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
@@ -85,10 +99,17 @@ func kill() -> void:
 		return
 	is_dead = true
 	velocity = Vector2.ZERO
+
+	if footstep_player.playing:
+		footstep_player.stop()
+
+	death_sound_player.play()  # ✅ Redă sunetul de moarte
+
 	anim_sprite.play("death" + current_direction)
 	set_physics_process(false)
 	await get_tree().create_timer(3.0).timeout
 	DeathScreen.show_death()
+
 
 func play_walk_animation() -> void:
 	anim_sprite.play("walk" + current_direction)

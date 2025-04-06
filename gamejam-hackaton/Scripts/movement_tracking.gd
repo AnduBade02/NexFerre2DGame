@@ -16,7 +16,10 @@ var is_slowed: bool = false
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var proximity_area: Area2D = $Proximity_Area
-
+@onready var footstep_player: AudioStreamPlayer2D = $FootstepPlayer
+@onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
+@onready var groan_player: AudioStreamPlayer2D = $GroanPlayer
+@onready var groan_timer: Timer = $GroanTimer
 
 func _ready():
 	randomize()
@@ -24,6 +27,10 @@ func _ready():
 	proximity_area.body_entered.connect(_on_player_entered)
 	proximity_area.body_exited.connect(_on_player_exited)
 	_start_random_movement()
+
+	# Groan logic
+	groan_timer.timeout.connect(_on_groan_timer_timeout)
+	_set_random_groan_time()
 
 func _physics_process(delta):
 	if is_dead:
@@ -33,16 +40,13 @@ func _physics_process(delta):
 		var to_player = (player_node.global_position - global_position).normalized()
 		var chase_speed = slow_speed if is_slowed else speed_chase
 		velocity = to_player * chase_speed
-
 		update_direction_toward_player()
-
 
 		if can_attack_player:
 			if is_player_in_attack_area():
 				attack_player()
 			elif is_player_in_range():
 				missed_attack()
-	
 
 	move_and_slide()
 	update_animation()
@@ -62,6 +66,8 @@ func set_random_direction():
 
 func update_animation():
 	if velocity.length() == 0 or is_dead:
+		if footstep_player.playing:
+			footstep_player.stop()
 		return
 
 	var dir = velocity.normalized()
@@ -71,6 +77,9 @@ func update_animation():
 		current_direction = "back" if dir.y < 0 else "front"
 
 	anim_sprite.play("walk-" + current_direction)
+
+	if not footstep_player.playing:
+		footstep_player.play()
 
 func _on_player_entered(body):
 	if body.is_in_group("player"):
@@ -109,12 +118,13 @@ func update_direction_toward_player():
 	else:
 		current_direction = "front" if to_player.y > 0 else "back"
 
-
-	
-
 func attack_player():
 	can_attack_player = false
 	velocity = Vector2.ZERO
+
+	if footstep_player.playing:
+		footstep_player.stop()
+
 	anim_sprite.play("attack-" + current_direction)
 
 	if player_node and player_node.has_method("kill"):
@@ -131,6 +141,10 @@ func missed_attack():
 	can_attack_player = false
 	is_slowed = true
 	velocity = Vector2.ZERO
+
+	if footstep_player.playing:
+		footstep_player.stop()
+
 	anim_sprite.play("attack-" + current_direction)
 
 	await anim_sprite.animation_finished
@@ -145,10 +159,35 @@ func die():
 		return
 	is_dead = true
 	velocity = Vector2.ZERO
+
+	if footstep_player.playing:
+		footstep_player.stop()
+
+	death_sound_player.play()
+
 	anim_sprite.play("death-" + current_direction)
 	set_physics_process(false)
 	proximity_area.monitoring = false
 	attack_area.monitoring = false
+	groan_timer.stop()
+
 	await anim_sprite.animation_finished
 	await get_tree().create_timer(3.0).timeout
 	queue_free()
+
+# ----------------------------
+# 👇 Groan logic
+# ----------------------------
+
+func _on_groan_timer_timeout():
+	if is_dead:
+		return
+
+	if not groan_player.playing:
+		groan_player.play()
+
+	_set_random_groan_time()
+
+func _set_random_groan_time():
+	groan_timer.wait_time = randf_range(4.0, 10.0)
+	groan_timer.start()

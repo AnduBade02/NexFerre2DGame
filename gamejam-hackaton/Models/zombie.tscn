@@ -1,10 +1,13 @@
-[gd_scene load_steps=118 format=3 uid="uid://bedlq7dpyhywp"]
+[gd_scene load_steps=121 format=3 uid="uid://bedlq7dpyhywp"]
 
 [ext_resource type="Script" uid="uid://dsuqfi1g6xyc1" path="res://Scripts/movement_tracking.gd" id="1_7nqyo"]
 [ext_resource type="Texture2D" uid="uid://bjmmlrkmy46rg" path="res://Assets/Apocalypse Character Pack/Zombie/Attack.png" id="1_eseir"]
 [ext_resource type="Texture2D" uid="uid://dnt102ujk14mk" path="res://Assets/Apocalypse Character Pack/Zombie/Death.png" id="2_7nqyo"]
 [ext_resource type="Texture2D" uid="uid://dxmvfk1avmj7i" path="res://Assets/Apocalypse Character Pack/Zombie/Idle.png" id="3_lnshm"]
 [ext_resource type="Texture2D" uid="uid://dd7yhiuvqx1bn" path="res://Assets/Apocalypse Character Pack/Zombie/Walk.png" id="4_x5rsa"]
+[ext_resource type="AudioStream" uid="uid://w6ohj3wnvkc1" path="res://Sounds/zombie-footsteps.mp3" id="6_lnshm"]
+[ext_resource type="AudioStream" uid="uid://dltndbokxsw7s" path="res://Sounds/zombie-groan.mp3" id="7_x5rsa"]
+[ext_resource type="AudioStream" uid="uid://xgt576coccih" path="res://Sounds/zombie-kill.wav" id="8_ogcpr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogcpr"]
 atlas = ExtResource("1_eseir")
@@ -883,3 +886,16 @@ position = Vector2(2, 5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(3, -17)
 shape = SubResource("CapsuleShape2D_lnshm")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lnshm")
+volume_db = -23.423
+
+[node name="GroanPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_x5rsa")
+volume_db = -16.343
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ogcpr")
+
+[node name="GroanTimer" type="Timer" parent="."]

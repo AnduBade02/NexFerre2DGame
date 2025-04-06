@@ -1,10 +1,13 @@
-[gd_scene load_steps=65 format=3 uid="uid://cr2p3hp70vd7p"]
+[gd_scene load_steps=68 format=3 uid="uid://cr2p3hp70vd7p"]
 
 [ext_resource type="Texture2D" uid="uid://cfndmmtvb0jds" path="res://Assets/Apocalypse Character Pack/Player/Death.png" id="1_hqtel"]
 [ext_resource type="Script" uid="uid://ca4uswte1exdk" path="res://Scripts/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c7vuq2ulyhk1h" path="res://Assets/Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4wcv3wgi5yyr" path="res://Assets/Apocalypse Character Pack/Player/Stab.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://drg3ib2s142xj" path="res://Assets/Apocalypse Character Pack/Player/Walk.png" id="4_1jxqw"]
+[ext_resource type="AudioStream" uid="uid://t2udug0pikk6" path="res://Sounds/player-footsteps.mp3" id="6_2hs0m"]
+[ext_resource type="AudioStream" uid="uid://nhd6yb0baedt" path="res://Sounds/stab-sound-effect.wav" id="7_1jxqw"]
+[ext_resource type="AudioStream" uid="uid://b2lx1lmhsysc3" path="res://Sounds/player-kill.wav" id="8_dw050"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
 atlas = ExtResource("1_hqtel")
@@ -514,3 +517,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(-79.2, -11.4698)
 shape = SubResource("CircleShape2D_sweqy")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_2hs0m")
+
+[node name="StabMissPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_1jxqw")
+
+[node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_dw050")
