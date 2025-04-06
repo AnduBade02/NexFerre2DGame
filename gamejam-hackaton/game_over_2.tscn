@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://c66svjt3nx8ls"]
+
+[ext_resource type="Script" uid="uid://dvpb8v8ta2igb" path="res://Scripts/game_over.gd" id="1_se2qa"]
+[ext_resource type="Texture2D" uid="uid://cmg6643tp2cvq" path="res://Assets/background-assets/badending.png" id="2_se2qa"]
+[ext_resource type="FontFile" uid="uid://c8p3km8sqnn1t" path="res://Assets/background-assets/apocalypse fax.ttf" id="3_q2h5v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_plcsa"]
+texture = ExtResource("2_se2qa")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8sti"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2yj1"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="game_over2" type="CanvasLayer"]
+script = ExtResource("1_se2qa")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_plcsa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_right = 90.0
+offset_bottom = 76.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ResetButton" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_q2h5v")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_e8sti")
+text = "THE END"
+
+[node name="MenuButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_q2h5v")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_q2yj1")
+text = "Main Menu"
+
+[node name="MenuContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -276.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftTextLabel" type="Label" parent="Panel/MenuContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46, 0.46, 0.46, 1)
+theme_override_colors/font_shadow_color = Color(0.658824, 0.658824, 0.658824, 1)
+theme_override_fonts/font = ExtResource("3_q2h5v")
+theme_override_font_sizes/font_size = 70
+text = "This is your legacy...
+Are your proud of it?
+~ Death Bringer~"
+horizontal_alignment = 1

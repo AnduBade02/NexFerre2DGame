@@ -21,12 +21,14 @@ func resume_game():
 	visible = false
 
 func reset_level():
+	Global.uncollect_all()  # ⬅️ Resetare pagini
 	visible = false
 	get_tree().paused = false
-	await get_tree().create_timer(0.01).timeout  # așteptăm un frame pentru a nu bloca încărcarea
+	await get_tree().create_timer(0.01).timeout
 	get_tree().reload_current_scene()
 
 func go_to_main_menu():
+	Global.uncollect_all()  # ⬅️ Resetare pagini
 	get_tree().paused = false
 	visible = false
-	get_tree().change_scene_to_file("res://start_menu.tscn")  # asigură-te că e scris corect
+	get_tree().change_scene_to_file("res://start_menu.tscn")

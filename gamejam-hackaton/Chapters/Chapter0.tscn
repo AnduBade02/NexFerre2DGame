@@ -1,7 +1,8 @@
-[gd_scene load_steps=114 format=4 uid="uid://dhsjotvytms3h"]
+[gd_scene load_steps=115 format=4 uid="uid://dhsjotvytms3h"]
 
 [ext_resource type="Texture2D" uid="uid://jhggom33js7i" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings_floors.png" id="1_5x7r8"]
 [ext_resource type="Texture2D" uid="uid://cndyutbtrqtri" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_main_lev.png" id="1_sey1v"]
+[ext_resource type="Script" uid="uid://cisqbvne8cmsj" path="res://Scripts/chapter_0.gd" id="1_tlkvk"]
 [ext_resource type="Texture2D" uid="uid://d1hp1wf24vabu" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_buildings.png" id="2_p0egc"]
 [ext_resource type="Texture2D" uid="uid://mc4jtr2g8q2g" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/32x32_mainlev_hills.png" id="2_trqf3"]
 [ext_resource type="Texture2D" uid="uid://cgnhw0q7nyahj" path="res://Assets/PALands_SET1_v1.01/32x32/_PNG/terrain_props_1.png" id="3_0vwio"]
@@ -111773,6 +111774,7 @@ texture = ExtResource("9_0vwio")
 sources/0 = SubResource("TileSetAtlasSource_m24d3")
 
 [node name="Chapter 0" type="Node2D"]
+script = ExtResource("1_tlkvk")
 
 [node name="Outside Floors" type="Node2D" parent="."]
 

@@ -41,6 +41,7 @@ const SOURCE_WALLS: int = 0
 const SOURCE_PROPS: int = 2
 
 func _ready():
+	
 	# 1) Calculăm dimensiunea hărții mari
 	big_width = int(width * outside_scale)
 	big_height = int(height * outside_scale)
@@ -70,11 +71,20 @@ func _ready():
 	place_water_prefabs()
 	place_wall_prefabs()
 	create_level_boundaries()
+	CutsceneBox.start_cutscene([
+		"Wandering through this valley of death 
+		feels like walking through someone else's memories.",
+		"I wish I could walk through mine...",
+		"If I’m not mistaken... southeast should take me back to my old home.",
+
+	])
 	spawn_zombies()
 
 # ----------------------------------------------------------------------------
 # GENEREAZĂ HARTA PRINCIPALĂ (map_data) - EXACT CA ÎN SCRIPTUL TĂU
 # ----------------------------------------------------------------------------
+
+	
 
 func create_level_boundaries():
 	var tile_size = 16

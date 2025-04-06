@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bueqv35jgawcy"]
 
-[ext_resource type="Texture2D" uid="uid://c0i13ib5mw7m7" path="res://Assets/wessel-brattinga-scientist-sprite-sheet-removebg-preview.png" id="1_dkah4"]
+[ext_resource type="Texture2D" uid="uid://coeqfvotxihrv" path="res://Assets/wessel-brattinga-scientist-sprite-sheet-removebg-preview.png" id="1_dkah4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3li26"]
 atlas = ExtResource("1_dkah4")
@@ -25,7 +25,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.3, 0.3)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8j610")

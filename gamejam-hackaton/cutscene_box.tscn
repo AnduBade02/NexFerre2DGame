@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://2uw5rm6t787e"]
+
+[ext_resource type="Script" uid="uid://nlddraobcvm2" path="res://Scripts/cutscene_box.gd" id="1_4ub4j"]
+[ext_resource type="FontFile" uid="uid://bxj8nb1tk0jne" path="res://Assets/background-assets/Apocalypse.ttf" id="2_1lfev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lfev"]
+bg_color = Color(0, 0, 0, 0.627451)
+
+[node name="CutsceneBox" type="CanvasLayer"]
+script = ExtResource("1_4ub4j")
+
+[node name="TextPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(500, 200)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lfev")
+
+[node name="TextContainer" type="MarginContainer" parent="TextPanel"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LineLabel" type="Label" parent="TextPanel/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_1lfev")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

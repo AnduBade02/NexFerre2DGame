@@ -22,6 +22,10 @@ DeathScreen="*res://death_screen.tscn"
 NoteUi="*res://note_ui.tscn"
 Note2Ui="*res://note2_ui.tscn"
 Note3Ui="*res://note3_ui.tscn"
+CutsceneBox="*res://cutscene_box.tscn"
+Global="*res://Scripts/global.gd"
+GameOver2="*res://game_over_2.tscn"
+GameOver1="*res://game_over_1.tscn"
 
 [input]
 
