@@ -7,6 +7,7 @@
 size = Vector2(233.906, 136.634)
 
 [node name="collectible" type="Area2D"]
+scale = Vector2(0.214, 0.214)
 script = ExtResource("1_8orai")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

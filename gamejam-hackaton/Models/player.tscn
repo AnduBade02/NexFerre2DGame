@@ -1,7 +1,7 @@
 [gd_scene load_steps=65 format=3 uid="uid://cr2p3hp70vd7p"]
 
 [ext_resource type="Texture2D" uid="uid://cfndmmtvb0jds" path="res://Assets/Apocalypse Character Pack/Player/Death.png" id="1_hqtel"]
-[ext_resource type="Script" uid="uid://ca4uswte1exdk" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Script" uid="uid://ca4uswte1exdk" path="res://Scripts/player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c7vuq2ulyhk1h" path="res://Assets/Apocalypse Character Pack/Player/Idle.png" id="2_sweqy"]
 [ext_resource type="Texture2D" uid="uid://c4wcv3wgi5yyr" path="res://Assets/Apocalypse Character Pack/Player/Stab.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://drg3ib2s142xj" path="res://Assets/Apocalypse Character Pack/Player/Walk.png" id="4_1jxqw"]

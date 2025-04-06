@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://6drhn75bbddr"]
 
-[ext_resource type="Texture2D" uid="uid://4xesen55g3x7" path="res://Assets/wife.png" id="1_8urhj"]
+[ext_resource type="Texture2D" uid="uid://vyndd44dd6fr" path="res://Assets/wife.png" id="1_8urhj"]
 
 [node name="Mother" type="CharacterBody2D"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.13, 0.13)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -5)

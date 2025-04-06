@@ -14,10 +14,10 @@ func _ready():
 func _on_body_entered(body: Node):
 	if has_moved_player:
 		return
-	if body.name != "Player":
+	if body.name != "player":
 		return
 
-	var player: Node = get_tree().get_root().find_child("Player", true, false)
+	var player: Node = get_tree().get_root().find_child("player", true, false)
 	if player == null:
 		print("❌ player_path invalid.")
 		return
@@ -31,7 +31,7 @@ func _on_body_entered(body: Node):
 
 	var parent = player.get_parent()
 	if parent == null:
-		print("❌ Player nu are părinte.")
+		print("❌ player nu are părinte.")
 		return
 
 	var children = parent.get_children()
@@ -42,17 +42,17 @@ func _on_body_entered(body: Node):
 	var is_between = player_index > interior_index and player_index < walls_index
 
 	if is_between:
-		print("✅ Player este deja între layere. Nu mutăm.")
+		print("✅ player este deja între layere. Nu mutăm.")
 	else:
 		var insert_index = walls_index
 
-		# Dacă Player e mai sus decât interiorul, mutăm cu 1 mai jos
+		# Dacă player e mai sus decât interiorul, mutăm cu 1 mai jos
 		if player_index < interior_index:
 			insert_index -= 1
 
 		parent.move_child(player, insert_index)
-		print("✅ Player mutat la index ", insert_index)
-		print("🚪 Player a ieșit din casă")
+		print("✅ player mutat la index ", insert_index)
+		print("🚪 player a ieșit din casă")
 	
 	if layer_to_show:
 		layer_to_show.visible = true
@@ -61,5 +61,5 @@ func _on_body_entered(body: Node):
 	has_moved_player = true
 
 func _on_body_exited(body: Node):
-	if body.name == "Player":
+	if body.name == "player":
 		has_moved_player = false

@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxjua5kcb85pf"]
 
-[ext_resource type="Texture2D" uid="uid://r8iwip36gtic" path="res://Assets/daughter.png" id="1_m71x0"]
+[ext_resource type="Texture2D" uid="uid://doa2yefu4seru" path="res://Assets/daughter.png" id="1_m71x0"]
 
 [node name="Daughter" type="CharacterBody2D"]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.12, 0.12)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_m71x0")

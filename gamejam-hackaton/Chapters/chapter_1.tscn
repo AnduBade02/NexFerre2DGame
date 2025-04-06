@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4s5iudjqvsl4"]
 
-[ext_resource type="Script" uid="uid://4jtxbdxfla80" path="res://chapter_1.gd" id="1_7doo8"]
+[ext_resource type="Script" uid="uid://4jtxbdxfla80" path="res://Scripts/chapter_1.gd" id="1_7doo8"]
 [ext_resource type="Texture2D" uid="uid://mead32t4s1oh" path="res://Assets/PALands_SET2_v1.0/32x32/_PNG/32x32_main_lev.png" id="1_8o7lh"]
 [ext_resource type="TileSet" uid="uid://db7eua2moqumv" path="res://Assets/TileSets/obstacles_tileset.tres" id="2_345w4"]
-[ext_resource type="PackedScene" uid="uid://bedlq7dpyhywp" path="res://zombie.tscn" id="2_l6s8g"]
+[ext_resource type="PackedScene" uid="uid://bedlq7dpyhywp" path="res://Models/zombie.tscn" id="2_l6s8g"]
 [ext_resource type="Texture2D" uid="uid://blo8xxwcsrgif" path="res://Assets/PALands_SET2_v1.0/32x32/_PNG/32x32_dec_props.png" id="3_7doo8"]
-[ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://player.tscn" id="4_345w4"]
+[ext_resource type="PackedScene" uid="uid://cr2p3hp70vd7p" path="res://Models/player.tscn" id="4_345w4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6s8g"]
 texture = ExtResource("1_8o7lh")

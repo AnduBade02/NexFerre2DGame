@@ -11,17 +11,17 @@ func _ready():
 
 func _on_body_entered(body: Node):
 	if has_moved_player:
-		print("⏭️ Player deja mutat, ignorăm reactivarea.")
+		print("⏭️ player deja mutat, ignorăm reactivarea.")
 		return
 
-	if body.name != "Player":
+	if body.name != "player":
 		return
 
 	has_moved_player = true  # 🔒 Blocăm imediat
 
-	var player: Node = get_tree().get_root().find_child("Player", true, false)
+	var player: Node = get_tree().get_root().find_child("player", true, false)
 	if player == null:
-		printerr("❌ Player nu a fost găsit în scenă.")
+		printerr("❌ player nu a fost găsit în scenă.")
 		return
 
 	var new_parent = get_node_or_null(new_parent_path)
@@ -41,7 +41,7 @@ func _on_body_entered(body: Node):
 		already_at_position = player_index == insert_index + 1
 
 	if is_already_child and already_at_position:
-		print("ℹ️ Player este deja în ", new_parent.name, " și în poziția corectă. Nu îl mai mutăm.")
+		print("ℹ️ player este deja în ", new_parent.name, " și în poziția corectă. Nu îl mai mutăm.")
 		return
 
 	# Mutăm doar dacă NU e deja în poziția dorită
@@ -52,12 +52,12 @@ func _on_body_entered(body: Node):
 	if insert_node != null and insert_node.get_parent() == new_parent:
 		var index = new_parent.get_children().find(insert_node)
 		new_parent.move_child(player, index + 1)
-		print("✅ Player mutat în ", new_parent.name, " după ", insert_node.name)
+		print("✅ player mutat în ", new_parent.name, " după ", insert_node.name)
 	else:
 		print("⚠️ Nodul de inserare nu este valid sau nu aparține lui ", new_parent.name)
 
 func _on_body_exited(body: Node):
-	if body.name == "Player":
+	if body.name == "player":
 		await get_tree().create_timer(0.3).timeout
 		has_moved_player = false
-		print("🚪 Player a schimbat zona.")
+		print("🚪 player a schimbat zona.")
