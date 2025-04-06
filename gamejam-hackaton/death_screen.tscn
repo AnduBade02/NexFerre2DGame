@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwx3i483m3dwb"]
 
-[ext_resource type="Script" uid="uid://cng482h64cie6" path="res://Scripts/death_screen.gd" id="1_6bi5g"]
-[ext_resource type="Texture2D" uid="uid://cro66s4rckr81" path="res://Assets/background-assets/deathscreen.png" id="2_6bi5g"]
+[ext_resource type="Script" uid="uid://cel8lt5jvvlbt" path="res://Scripts/death_screen.gd" id="1_6bi5g"]
+[ext_resource type="Texture2D" uid="uid://wif72bxkwkei" path="res://Assets/background-assets/deathscreen.png" id="2_6bi5g"]
 [ext_resource type="FontFile" uid="uid://c8p3km8sqnn1t" path="res://Assets/background-assets/apocalypse fax.ttf" id="3_hhlqb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3xb4"]
